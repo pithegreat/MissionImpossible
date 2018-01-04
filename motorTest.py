@@ -3,6 +3,7 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 import time
 import atexit
 
+
 mh = Adafruit_MotorHAT(addr=0x60) #creates the PVM to control the DC motors
 
 myLeftMotor = mh.getMotor(1) #creates the DC motor objects
@@ -14,6 +15,7 @@ myRightMotor.setSpeed(255)
 def turnOffMotors(): #shuts down motors
 	myLeftMotor.run(Adafruit_MotorHAT.RELEASE)
 	myRightMotor.run(Adafruit_MotorHAT.RELEASE)
+atexit.register(turnOffMotors)
 
 def forward(seconds=None): #forward for number of seconds
     myLeftMotor.run(Adafruit_MotorHAT.FORWARD)
@@ -47,8 +49,9 @@ forward(5)
 backward(5)
 turnRight(5)
 turnLeft(5)
+turnOffMotors()
 
 
 
  
-atexit.register(turnOffMotors)
+
