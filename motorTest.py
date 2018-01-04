@@ -2,6 +2,11 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
 import time
 import atexit
+from urllib.request import urlopen
+
+html = str(urlopen("http://10.144.7.184/coord.txt").read()) #reads in data from website
+coords = html.split(",")
+coords[0], coords[1] = int(coords[0][1:]), int(coords[1][:-3]) #puts it into coords into readable number
 
 
 mh = Adafruit_MotorHAT(addr=0x60) #creates the PVM to control the DC motors
@@ -50,8 +55,3 @@ backward(5)
 turnRight(5)
 turnLeft(5)
 turnOffMotors()
-
-
-
- 
-
