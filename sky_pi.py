@@ -85,9 +85,9 @@ def turn_calc(end, target): #figures out how much to turn
     want_rad = math.atan(want_tan)
     want_deg = (180*want_rad)/(math.pi) #to degrees
     want_deg = heading_calc(want_dx, want_deg) #angle want to go
-    alex.forward(5)
-    angle_dx = alex.pos()[0] - end[0]
-    angle_dy = alex.pos()[1] - end[1]
+    forward(distance_to_time(0.2)) #goes forward 20 cm to figure out its heading
+    angle_dx = get_pos()[0] - end[0]
+    angle_dy = get_pos()[1] - end[1]
     if angle_dx == 0:
         tan_angle = math.pi/2 #if 90 or 270 degrees
     else:
